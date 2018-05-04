@@ -1,17 +1,16 @@
 # vagrant-haiku-cpp: a Vagrant box for building C/C++ binaries for Haiku OS
 
-vagrant-haiku-cpp is a placeholder for a Vagrant box having a C/C++ compiler. In fact, Haiku (at least alpha4) includes `gcc` by default, so users may wish to leverage the [mcandre/haiku](https://app.vagrantup.com/mcandre/boxes/haiku) base box instead.
-
 # VAGRANT CLOUD
 
-https://app.vagrantup.com/mcandre/boxes/vagrant-haiku-cpp
+https://app.vagrantup.com/mcandre/boxes/vagrant-haiku-cpp-amd64
+https://app.vagrantup.com/mcandre/boxes/vagrant-haiku-cpp-i386
 
 # EXAMPLE
 
 ```console
-$ cd test
+$ cd amd64/test
 $ vagrant up
-$ vagrant ssh -c "cd /boot/vagrant-src && g++ -o hello hello.cpp && ./hello"
+$ vagrant ssh -c "cd /boot/vagrant-src && clang++ -o hello -I /boot/system/develop/tools/lib/gcc/x86_64-unknown-haiku/5.4.0/include/c++ -I /boot/system/develop/tools/lib/gcc/x86_64-unknown-haiku/5.4.0/include/c++/x86_64-unknown-haiku hello.cpp && ./hello"
 Hello World!
 ```
 
@@ -33,5 +32,6 @@ Hello World!
 # EXPORT
 
 ```console
-$ make vagrant-haiku-cpp.box
+$ sh -c "cd amd64 && make vagrant-haiku-cpp-amd64.box"
+$ sh -c "cd i386 && make vagrant-haiku-cpp-i386.box"
 ```
